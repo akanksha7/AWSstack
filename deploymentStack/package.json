@@ -1,0 +1,11 @@
+{
+  "name": "deploymentStack",
+  "version": "1.0.0",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.549.0",
+    "@aws-sdk/client-ec2": "^3.549.0",
+    "@aws-sdk/client-s3": "^3.550.0",
+    "@aws-sdk/client-ssm": "^3.549.0",
+    "@aws-sdk/lib-dynamodb": "^3.549.0"
+  }
+}
