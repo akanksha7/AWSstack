@@ -10,13 +10,14 @@ import {
 function App() {
   const [file, setFile] = useState(null);
   const [fileName, setFileName] = useState('');
-
+  var apiGatewayKey= null;
   useEffect(() => {
     async function configureAWS() {
       try {
         const client = new SecretsManagerClient();
-        const accessKeyId = await client.send(new GetSecretValueCommand({ SecretId: 'secret_access_key' }));
-        const secretAccessKey = await client.send(new GetSecretValueCommand({ SecretId: 'access_key_id' }));
+        const accessKeyId = await client.send(new GetSecretValueCommand({ SecretId: 'access_key_id' }));
+        const secretAccessKey = await client.send(new GetSecretValueCommand({ SecretId: 'secret_access_key' }));
+        apiGatewayKey = await client.send(new GetSecretValueCommand({ SecretId: 'secret_access_key' }));
 
         console.log(accessKeyId);
         console.log(secretAccessKey);
@@ -54,7 +55,7 @@ function App() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Api-Key': process.env.REACT_APP_API_GATEWAY_KEY,
+          'X-Api-Key': apiGatewayKey,
         },
         body: JSON.stringify({
           "TableName": process.env.REACT_APP_TableName,

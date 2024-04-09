@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "fovusfilepaths6F0CC3DD": {
+  "filepathsid1CF0CE93B": {
    "Type": "AWS::DynamoDB::Table",
    "Properties": {
     "AttributeDefinitions": [
@@ -16,15 +16,15 @@
       "KeyType": "HASH"
      }
     ],
-    "TableName": "fovus-file-paths"
+    "TableName": "fovus-file-path-1"
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/fovus-file-paths/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/file-paths-id-1/Resource"
    }
   },
-  "fovusscripts2F004749E": {
+  "scriptsid1B86266E8": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
     "BucketEncryption": {
@@ -36,7 +36,7 @@
       }
      ]
     },
-    "BucketName": "fovus-scripts-2",
+    "BucketName": "fovus-scripts-bucket-1",
     "CorsConfiguration": {
      "CorsRules": [
       {
@@ -61,7 +61,7 @@
     },
     "Tags": [
      {
-      "Key": "aws-cdk:cr-owned:4d8aef2f",
+      "Key": "aws-cdk:cr-owned:5397c617",
       "Value": "true"
      }
     ]
@@ -69,14 +69,14 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/fovus-scripts-2/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/scripts-id-1/Resource"
    }
   },
-  "fovusscripts2PolicyE32AEEE1": {
+  "scriptsid1Policy58034B3A": {
    "Type": "AWS::S3::BucketPolicy",
    "Properties": {
     "Bucket": {
-     "Ref": "fovusscripts2F004749E"
+     "Ref": "scriptsid1B86266E8"
     },
     "PolicyDocument": {
      "Statement": [
@@ -94,7 +94,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "fovusscripts2F004749E",
+          "scriptsid1B86266E8",
           "Arn"
          ]
         },
@@ -104,7 +104,7 @@
           [
            {
             "Fn::GetAtt": [
-             "fovusscripts2F004749E",
+             "scriptsid1B86266E8",
              "Arn"
             ]
            },
@@ -119,10 +119,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/fovus-scripts-2/Policy/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/scripts-id-1/Policy/Resource"
    }
   },
-  "filesbucket2B3D22D40": {
+  "filesid1259AFC94": {
    "Type": "AWS::S3::Bucket",
    "Properties": {
     "BucketEncryption": {
@@ -134,7 +134,7 @@
       }
      ]
     },
-    "BucketName": "files-bucket-2",
+    "BucketName": "fovus-files-bucket-1",
     "CorsConfiguration": {
      "CorsRules": [
       {
@@ -163,14 +163,14 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/files-bucket-2/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/files-id-1/Resource"
    }
   },
-  "filesbucket2PolicyF63B8174": {
+  "filesid1PolicyECD50CC5": {
    "Type": "AWS::S3::BucketPolicy",
    "Properties": {
     "Bucket": {
-     "Ref": "filesbucket2B3D22D40"
+     "Ref": "filesid1259AFC94"
     },
     "PolicyDocument": {
      "Statement": [
@@ -188,7 +188,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "filesbucket2B3D22D40",
+          "filesid1259AFC94",
           "Arn"
          ]
         },
@@ -198,7 +198,7 @@
           [
            {
             "Fn::GetAtt": [
-             "filesbucket2B3D22D40",
+             "filesid1259AFC94",
              "Arn"
             ]
            },
@@ -213,10 +213,10 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/files-bucket-2/Policy/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/files-id-1/Policy/Resource"
    }
   },
-  "DeployFilesAwsCliLayerF562E16D": {
+  "idAwsCliLayer2A9FFC40": {
    "Type": "AWS::Lambda::LayerVersion",
    "Properties": {
     "Content": {
@@ -228,13 +228,13 @@
     "Description": "/opt/awscli/aws"
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/DeployFiles/AwsCliLayer/Resource",
+    "aws:cdk:path": "DeployFovusStackStack/id/AwsCliLayer/Resource",
     "aws:asset:path": "asset.3322b7049fb0ed2b7cbb644a2ada8d1116ff80c32dca89e6ada846b5de26f961.zip",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Content"
    }
   },
-  "DeployFilesCustomResource51EC1601": {
+  "idCustomResource5E0483B6": {
    "Type": "Custom::CDKBucketDeployment",
    "Properties": {
     "ServiceToken": {
@@ -252,14 +252,14 @@
      "6d16c4d1b8e69059b5386dab9f830b1c3b66fff9ee5d75af21781e27ec353e9e.zip"
     ],
     "DestinationBucketName": {
-     "Ref": "fovusscripts2F004749E"
+     "Ref": "scriptsid1B86266E8"
     },
     "Prune": true
    },
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/DeployFiles/CustomResource/Default"
+    "aws:cdk:path": "DeployFovusStackStack/id/CustomResource/Default"
    }
   },
   "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
@@ -359,7 +359,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "fovusscripts2F004749E",
+          "scriptsid1B86266E8",
           "Arn"
          ]
         },
@@ -369,7 +369,7 @@
           [
            {
             "Fn::GetAtt": [
-             "fovusscripts2F004749E",
+             "scriptsid1B86266E8",
              "Arn"
             ]
            },
@@ -410,7 +410,7 @@
     "Handler": "index.handler",
     "Layers": [
      {
-      "Ref": "DeployFilesAwsCliLayerF562E16D"
+      "Ref": "idAwsCliLayer2A9FFC40"
      }
     ],
     "Role": {
@@ -489,13 +489,13 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "filesbucket2B3D22D40",
+          "filesid1259AFC94",
           "Arn"
          ]
         },
         {
          "Fn::GetAtt": [
-          "fovusscripts2F004749E",
+          "scriptsid1B86266E8",
           "Arn"
          ]
         },
@@ -505,7 +505,7 @@
           [
            {
             "Fn::GetAtt": [
-             "filesbucket2B3D22D40",
+             "filesid1259AFC94",
              "Arn"
             ]
            },
@@ -519,7 +519,7 @@
           [
            {
             "Fn::GetAtt": [
-             "fovusscripts2F004749E",
+             "scriptsid1B86266E8",
              "Arn"
             ]
            },
@@ -546,7 +546,7 @@
           [
            {
             "Fn::GetAtt": [
-             "filesbucket2B3D22D40",
+             "filesid1259AFC94",
              "Arn"
             ]
            },
@@ -560,7 +560,7 @@
           [
            {
             "Fn::GetAtt": [
-             "fovusscripts2F004749E",
+             "scriptsid1B86266E8",
              "Arn"
             ]
            },
@@ -589,7 +589,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "fovusfilepaths6F0CC3DD",
+          "filepathsid1CF0CE93B",
           "Arn"
          ]
         },
@@ -624,7 +624,7 @@
     "Environment": {
      "Variables": {
       "TABLE_NAME": {
-       "Ref": "fovusfilepaths6F0CC3DD"
+       "Ref": "filepathsid1CF0CE93B"
       }
      }
     },
@@ -705,7 +705,7 @@
          [
           {
            "Fn::GetAtt": [
-            "filesbucket2B3D22D40",
+            "filesid1259AFC94",
             "Arn"
            ]
           },
@@ -1013,7 +1013,7 @@
      {
       "Name": "REACT_APP_TableName",
       "Value": {
-       "Ref": "fovusfilepaths6F0CC3DD"
+       "Ref": "filepathsid1CF0CE93B"
       }
      },
      {
@@ -1050,7 +1050,7 @@
      {
       "Name": "REACT_APP_BUCKET_NAME",
       "Value": {
-       "Ref": "filesbucket2B3D22D40"
+       "Ref": "filesid1259AFC94"
       }
      }
     ],

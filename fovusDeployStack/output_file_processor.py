@@ -39,8 +39,8 @@ s3 = boto3.client('s3', region_name=AWS_REGION, aws_access_key_id=AWS_ACCESS_KEY
                   aws_secret_access_key=AWS_SECRET_ACCESS_KEY)
 
 # DynamoDB table and S3 bucket names
-DYNAMODB_TABLE_NAME = 'fovus-file-table'
-S3_BUCKET_NAME = 'fovus-file-storage'
+DYNAMODB_TABLE_NAME = os.environ.get('DYNAMODB_TABLE_NAME', 'fovus-file-path-1')
+S3_BUCKET_NAME = os.environ.get('S3_BUCKET_NAME','fovus-files-bucket-1')
 
 
 def lambda_handler(event, context):

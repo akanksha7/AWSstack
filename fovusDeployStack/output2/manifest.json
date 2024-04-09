@@ -18,7 +18,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/5c864cd18867644b4148074d480b9ddddb769a07b76dededc1b5829890b388e2.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/f12f4b0433af39dd36b3878c6f3c95de6f72dc77b096016e80fef305159a8ab3.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -34,54 +34,54 @@
         "DeployFovusStackStack.assets"
       ],
       "metadata": {
-        "/DeployFovusStackStack/fovus-file-paths": [
+        "/DeployFovusStackStack/file-paths-id-1": [
           {
             "type": "aws:cdk:hasPhysicalName",
             "data": {
-              "Ref": "fovusfilepaths6F0CC3DD"
+              "Ref": "filepathsid1CF0CE93B"
             }
           }
         ],
-        "/DeployFovusStackStack/fovus-file-paths/Resource": [
+        "/DeployFovusStackStack/file-paths-id-1/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "fovusfilepaths6F0CC3DD"
+            "data": "filepathsid1CF0CE93B"
           }
         ],
-        "/DeployFovusStackStack/fovus-scripts-2/Resource": [
+        "/DeployFovusStackStack/scripts-id-1/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "fovusscripts2F004749E"
+            "data": "scriptsid1B86266E8"
           }
         ],
-        "/DeployFovusStackStack/fovus-scripts-2/Policy/Resource": [
+        "/DeployFovusStackStack/scripts-id-1/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "fovusscripts2PolicyE32AEEE1"
+            "data": "scriptsid1Policy58034B3A"
           }
         ],
-        "/DeployFovusStackStack/files-bucket-2/Resource": [
+        "/DeployFovusStackStack/files-id-1/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "filesbucket2B3D22D40"
+            "data": "filesid1259AFC94"
           }
         ],
-        "/DeployFovusStackStack/files-bucket-2/Policy/Resource": [
+        "/DeployFovusStackStack/files-id-1/Policy/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "filesbucket2PolicyF63B8174"
+            "data": "filesid1PolicyECD50CC5"
           }
         ],
-        "/DeployFovusStackStack/DeployFiles/AwsCliLayer/Resource": [
+        "/DeployFovusStackStack/id/AwsCliLayer/Resource": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployFilesAwsCliLayerF562E16D"
+            "data": "idAwsCliLayer2A9FFC40"
           }
         ],
-        "/DeployFovusStackStack/DeployFiles/CustomResource/Default": [
+        "/DeployFovusStackStack/id/CustomResource/Default": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "DeployFilesCustomResource51EC1601"
+            "data": "idCustomResource5E0483B6"
           }
         ],
         "/DeployFovusStackStack/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource": [

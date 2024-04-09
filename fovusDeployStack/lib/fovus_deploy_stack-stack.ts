@@ -17,16 +17,16 @@ export class DeployFovusStackStack extends cdk.Stack {
     super(scope, id, props);
 
     //DynamoDb table to store file_name and file_paths
-    const dynamoDbTable = new dynamodb.Table(this, 'fovus-file-paths', {
-      tableName : 'fovus-file-paths',
+    const dynamoDbTable = new dynamodb.Table(this, 'file-paths-id-1', {
+      tableName : 'fovus-file-path-1',
       partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
     //S3 bucket to store script
-    const bucket_script = new s3.Bucket(this, 'fovus-scripts', {
-      bucketName: 'fovus-scripts',
+    const bucket_script = new s3.Bucket(this, 'scripts-id-1', {
+      bucketName: 'fovus-scripts-bucket-1',
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.S3_MANAGED,
       enforceSSL: true,
@@ -34,8 +34,8 @@ export class DeployFovusStackStack extends cdk.Stack {
     });
 
     //S3 bucket to store input and output files
-    const bucket_files = new s3.Bucket(this, 'files-bucket', {
-      bucketName: 'files-bucket',
+    const bucket_files = new s3.Bucket(this, 'files-id-1', {
+      bucketName: 'fovus-files-bucket-1',
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.S3_MANAGED,
       enforceSSL: true,

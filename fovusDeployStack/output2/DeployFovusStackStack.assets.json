@@ -66,7 +66,7 @@
         }
       }
     },
-    "5c864cd18867644b4148074d480b9ddddb769a07b76dededc1b5829890b388e2": {
+    "f12f4b0433af39dd36b3878c6f3c95de6f72dc77b096016e80fef305159a8ab3": {
       "source": {
         "path": "DeployFovusStackStack.template.json",
         "packaging": "file"
@@ -74,7 +74,7 @@
       "destinations": {
         "current_account-current_region": {
           "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}",
-          "objectKey": "5c864cd18867644b4148074d480b9ddddb769a07b76dededc1b5829890b388e2.json",
+          "objectKey": "f12f4b0433af39dd36b3878c6f3c95de6f72dc77b096016e80fef305159a8ab3.json",
           "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-${AWS::Region}"
         }
       }
