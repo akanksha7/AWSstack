@@ -1,6 +1,6 @@
 {
  "Resources": {
-  "fovusddb505F77C1": {
+  "fovusfilepaths6F0CC3DD": {
    "Type": "AWS::DynamoDB::Table",
    "Properties": {
     "AttributeDefinitions": [
@@ -21,7 +21,7 @@
    "UpdateReplacePolicy": "Delete",
    "DeletionPolicy": "Delete",
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/fovus-ddb/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/fovus-file-paths/Resource"
    }
   },
   "fovusscripts2F004749E": {
@@ -589,7 +589,7 @@
        "Resource": [
         {
          "Fn::GetAtt": [
-          "fovusddb505F77C1",
+          "fovusfilepaths6F0CC3DD",
           "Arn"
          ]
         },
@@ -624,7 +624,7 @@
     "Environment": {
      "Variables": {
       "TABLE_NAME": {
-       "Ref": "fovusddb505F77C1"
+       "Ref": "fovusfilepaths6F0CC3DD"
       }
      }
     },
@@ -944,7 +944,16 @@
     "aws:cdk:path": "DeployFovusStackStack/fovus-file-upload-api/Default/uploadFiles/POST/Resource"
    }
   },
-  "FovusAmplifyAppRole21CF68E4": {
+  "AmplifyReactRepo0E0699E7": {
+   "Type": "AWS::CodeCommit::Repository",
+   "Properties": {
+    "RepositoryName": "amplify-react-repo"
+   },
+   "Metadata": {
+    "aws:cdk:path": "DeployFovusStackStack/AmplifyReactRepo/Resource"
+   }
+  },
+  "fovusfileuploadRole10D778F5": {
    "Type": "AWS::IAM::Role",
    "Properties": {
     "AssumeRolePolicyDocument": {
@@ -961,10 +970,39 @@
     }
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/FovusAmplifyApp/Role/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/fovus-file-upload/Role/Resource"
    }
   },
-  "FovusAmplifyAppE86FFE91": {
+  "fovusfileuploadRoleDefaultPolicy6CE09395": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": "codecommit:GitPull",
+       "Effect": "Allow",
+       "Resource": {
+        "Fn::GetAtt": [
+         "AmplifyReactRepo0E0699E7",
+         "Arn"
+        ]
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "fovusfileuploadRoleDefaultPolicy6CE09395",
+    "Roles": [
+     {
+      "Ref": "fovusfileuploadRole10D778F5"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "DeployFovusStackStack/fovus-file-upload/Role/DefaultPolicy/Resource"
+   }
+  },
+  "fovusfileupload496624C9": {
    "Type": "AWS::Amplify::App",
    "Properties": {
     "BasicAuthConfig": {
@@ -975,7 +1013,7 @@
      {
       "Name": "REACT_APP_TableName",
       "Value": {
-       "Ref": "fovusddb505F77C1"
+       "Ref": "fovusfilepaths6F0CC3DD"
       }
      },
      {
@@ -1006,7 +1044,7 @@
       }
      },
      {
-      "Name": "REACT_APP_region",
+      "Name": "REACT_APP_REGION",
       "Value": "us-east-1"
      },
      {
@@ -1018,25 +1056,29 @@
     ],
     "IAMServiceRole": {
      "Fn::GetAtt": [
-      "FovusAmplifyAppRole21CF68E4",
+      "fovusfileuploadRole10D778F5",
       "Arn"
      ]
     },
-    "Name": "FovusAmplifyApp",
-    "OauthToken": "{{resolve:secretsmanager:github:SecretString:::}}",
+    "Name": "fovus-file-upload",
     "Platform": "WEB",
-    "Repository": "https://github.com/akanksha7/awsStack"
+    "Repository": {
+     "Fn::GetAtt": [
+      "AmplifyReactRepo0E0699E7",
+      "CloneUrlHttp"
+     ]
+    }
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/FovusAmplifyApp/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/fovus-file-upload/Resource"
    }
   },
-  "FovusAmplifyAppmainD3DD4814": {
+  "fovusfileuploadmainC6263950": {
    "Type": "AWS::Amplify::Branch",
    "Properties": {
     "AppId": {
      "Fn::GetAtt": [
-      "FovusAmplifyAppE86FFE91",
+      "fovusfileupload496624C9",
       "AppId"
      ]
     },
@@ -1045,13 +1087,13 @@
     "EnablePullRequestPreview": true
    },
    "Metadata": {
-    "aws:cdk:path": "DeployFovusStackStack/FovusAmplifyApp/main/Resource"
+    "aws:cdk:path": "DeployFovusStackStack/fovus-file-upload/main/Resource"
    }
   },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
-    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21Sy27CMBD8Fu7GhCJVPTak6qlVEVS9osVZYMEvxU5RFOXf60cUOFSytLPj9Xp27Ce+XD3zvpjBzc1FfZ1LOvB+50FcWaD2fd1pUKYO5DccJLLqqBMYmFvxft2KK/pIjiiHjZEkujs95jlZg0unQ2+00nQKted5620iGDiH3vEyhoFJUIcaeB86fkCHzQ82joxmO9Inid7o91YLH5kJhNJHvMFGkYuHBkageL81eZoU74IzGhhYOoHHG3ShFJ0vLaXqET4oDexDFqw7pb4ZhHrTNgLj0FMyNsr4E/3Z1JHKKFytrKRjl6YtrU02NqDFeRjuLbIjexnd2IeXEpJ4eXOVpGQQS8ZFDcEhVrXOG/Xv9QF/td62aY7K6Jp88qiYg7Rn4MXsdfwaixhHbeNmH+VN2rSpkV/c4nf5wsMqZhdHNG9a7Ukh3+b4B2E4dc1xAgAA"
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/21STW/CMAz9LdzT0A1p2nGFaadNQzDtikxqwJAvNelQVfW/Lx9d4TCpkp9fbOf5pY/8YfHE+3IGV1eI+lJI2vN+60FcWKB2fd1pUKYO5BfsJbLVQScwMLfg/bIVF/SRHFEOayNJdDd6zHOyBJe6w2y00nQKtef56HUiGDiH3vEqhoFJUPsaeB8mvkOHzTc2joxmW9JHid7ot1YLH5kJhNJ7vMZGkYtNAyNQvN+YvE2KN8EZDQwsHcHjFbpQis5XllL1CO+UBvYuC9Yd09wMQr1pG4Fx6SkZB2X8gf5k6khlNDBhahRGKfLxamscedN0uekvCwKVlXTokieVtcnsBrQ4DcPtouzbTkbPduE9hSReXd1KUrKRJXuj0uAjW7XOG/WvyIA/W2/btO3K6Jp8crIsQNoT8HL2Mv5A8xhHbeNhH+VN2nTYjp/d/OfhmYevnJ0dUdG02pNCvsnxF1vpu3iXAgAA"
    },
    "Metadata": {
     "aws:cdk:path": "DeployFovusStackStack/CDKMetadata/Default"

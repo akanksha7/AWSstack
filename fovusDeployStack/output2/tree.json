@@ -8,13 +8,13 @@
         "id": "DeployFovusStackStack",
         "path": "DeployFovusStackStack",
         "children": {
-          "fovus-ddb": {
-            "id": "fovus-ddb",
-            "path": "DeployFovusStackStack/fovus-ddb",
+          "fovus-file-paths": {
+            "id": "fovus-file-paths",
+            "path": "DeployFovusStackStack/fovus-file-paths",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "DeployFovusStackStack/fovus-ddb/Resource",
+                "path": "DeployFovusStackStack/fovus-file-paths/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -41,7 +41,7 @@
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "DeployFovusStackStack/fovus-ddb/ScalingRole",
+                "path": "DeployFovusStackStack/fovus-file-paths/ScalingRole",
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.Resource",
                   "version": "2.136.0"
@@ -846,7 +846,7 @@
                                   "Resource": [
                                     {
                                       "Fn::GetAtt": [
-                                        "fovusddb505F77C1",
+                                        "fovusfilepaths6F0CC3DD",
                                         "Arn"
                                       ]
                                     },
@@ -924,7 +924,7 @@
                     "environment": {
                       "variables": {
                         "TABLE_NAME": {
-                          "Ref": "fovusddb505F77C1"
+                          "Ref": "fovusfilepaths6F0CC3DD"
                         }
                       }
                     },
@@ -1424,17 +1424,41 @@
               "version": "2.136.0"
             }
           },
-          "FovusAmplifyApp": {
-            "id": "FovusAmplifyApp",
-            "path": "DeployFovusStackStack/FovusAmplifyApp",
+          "AmplifyReactRepo": {
+            "id": "AmplifyReactRepo",
+            "path": "DeployFovusStackStack/AmplifyReactRepo",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "DeployFovusStackStack/AmplifyReactRepo/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CodeCommit::Repository",
+                  "aws:cdk:cloudformation:props": {
+                    "repositoryName": "amplify-react-repo"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_codecommit.CfnRepository",
+                  "version": "2.136.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_codecommit.Repository",
+              "version": "2.136.0"
+            }
+          },
+          "fovus-file-upload": {
+            "id": "fovus-file-upload",
+            "path": "DeployFovusStackStack/fovus-file-upload",
             "children": {
               "Role": {
                 "id": "Role",
-                "path": "DeployFovusStackStack/FovusAmplifyApp/Role",
+                "path": "DeployFovusStackStack/fovus-file-upload/Role",
                 "children": {
                   "ImportRole": {
                     "id": "ImportRole",
-                    "path": "DeployFovusStackStack/FovusAmplifyApp/Role/ImportRole",
+                    "path": "DeployFovusStackStack/fovus-file-upload/Role/ImportRole",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.Resource",
                       "version": "2.136.0"
@@ -1442,7 +1466,7 @@
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "DeployFovusStackStack/FovusAmplifyApp/Role/Resource",
+                    "path": "DeployFovusStackStack/fovus-file-upload/Role/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -1464,6 +1488,50 @@
                       "fqn": "aws-cdk-lib.aws_iam.CfnRole",
                       "version": "2.136.0"
                     }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "DeployFovusStackStack/fovus-file-upload/Role/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "DeployFovusStackStack/fovus-file-upload/Role/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": "codecommit:GitPull",
+                                  "Effect": "Allow",
+                                  "Resource": {
+                                    "Fn::GetAtt": [
+                                      "AmplifyReactRepo0E0699E7",
+                                      "Arn"
+                                    ]
+                                  }
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "fovusfileuploadRoleDefaultPolicy6CE09395",
+                            "roles": [
+                              {
+                                "Ref": "fovusfileuploadRole10D778F5"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.136.0"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.136.0"
+                    }
                   }
                 },
                 "constructInfo": {
@@ -1473,7 +1541,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "DeployFovusStackStack/FovusAmplifyApp/Resource",
+                "path": "DeployFovusStackStack/fovus-file-upload/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Amplify::App",
                   "aws:cdk:cloudformation:props": {
@@ -1485,7 +1553,7 @@
                       {
                         "name": "REACT_APP_TableName",
                         "value": {
-                          "Ref": "fovusddb505F77C1"
+                          "Ref": "fovusfilepaths6F0CC3DD"
                         }
                       },
                       {
@@ -1516,7 +1584,7 @@
                         }
                       },
                       {
-                        "name": "REACT_APP_region",
+                        "name": "REACT_APP_REGION",
                         "value": "us-east-1"
                       },
                       {
@@ -1528,14 +1596,18 @@
                     ],
                     "iamServiceRole": {
                       "Fn::GetAtt": [
-                        "FovusAmplifyAppRole21CF68E4",
+                        "fovusfileuploadRole10D778F5",
                         "Arn"
                       ]
                     },
-                    "name": "FovusAmplifyApp",
-                    "oauthToken": "{{resolve:secretsmanager:github:SecretString:::}}",
+                    "name": "fovus-file-upload",
                     "platform": "WEB",
-                    "repository": "https://github.com/akanksha7/awsStack"
+                    "repository": {
+                      "Fn::GetAtt": [
+                        "AmplifyReactRepo0E0699E7",
+                        "CloneUrlHttp"
+                      ]
+                    }
                   }
                 },
                 "constructInfo": {
@@ -1545,17 +1617,17 @@
               },
               "main": {
                 "id": "main",
-                "path": "DeployFovusStackStack/FovusAmplifyApp/main",
+                "path": "DeployFovusStackStack/fovus-file-upload/main",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "DeployFovusStackStack/FovusAmplifyApp/main/Resource",
+                    "path": "DeployFovusStackStack/fovus-file-upload/main/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::Amplify::Branch",
                       "aws:cdk:cloudformation:props": {
                         "appId": {
                           "Fn::GetAtt": [
-                            "FovusAmplifyAppE86FFE91",
+                            "fovusfileupload496624C9",
                             "AppId"
                           ]
                         },

@@ -3,34 +3,10 @@ import sys
 import json
 from botocore.exceptions import ClientError
 
-# AWS region
-AWS_REGION = os.environ.get('AWS_REGION', 'us-east-1')
-
-def get_secret(secret_name):
-    # Create a Secrets Manager client
-    session = boto3.session.Session()
-    client = session.client(
-        service_name='secretsmanager',
-        region_name=AWS_REGION
-    )
-    # Retrieve the secret value
-    try:
-        response = client.get_secret_value(SecretId=secret_name)
-    except ClientError as e:
-        print("Error retrieving secret:", e)
-        return None
-    else:
-        # Parse and return the secret value
-        secret = response['SecretString']
-        return json.loads(secret)
-
-
-secret_id = get_secret('access_key_id')
-secret_key = get_secret('secret_access_key')
-
-# Extract AWS access key and secret key from the retrieved secret
-AWS_ACCESS_KEY_ID = secret_id['accessKeyId']
-AWS_SECRET_ACCESS_KEY = secret_key['secret_access_key']
+# AWS credentials and region
+AWS_REGION = 'us-east-1'
+AWS_ACCESS_KEY_ID = 'AKIA3FLD3FJSJ7QFUPVF'
+AWS_SECRET_ACCESS_KEY = '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'
 
 # DynamoDB and S3 clients
 dynamodb = boto3.client('dynamodb', region_name=AWS_REGION, aws_access_key_id=AWS_ACCESS_KEY_ID,
