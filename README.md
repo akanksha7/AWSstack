@@ -5,22 +5,26 @@
 The project consists of the following components:
 
 **Amazon S3 Buckets:** Stores the uploaded files and the script to perform the steps in the ec2 instance.
-**Amazon DynamoDB Table:** Stores metadata about the uploaded files, including the S3 path.  
-**Amazon API Gateway:** Provides an HTTP endpoint for uploading files and triggering the script run.  
-**AWS Lambda Functions:** Handle file upload, store metadata in DynamoDB, and trigger the script run.  
+
+**Amazon DynamoDB Table:** Stores metadata about the uploaded files, including the S3 path.
+
+**Amazon API Gateway:** Provides an HTTP endpoint for uploading files and triggering the script run.
+
+**AWS Lambda Functions:** Handle file upload, store metadata in DynamoDB, and trigger the script run.
+
 **Amazon EC2 Instance:** Runs the script triggered by DynamoDB events.
 
 ## Implementation
 
 **Step 1: Set up AWS Environment**  
-Make sure you have the AWS CLI and AWS CDK installed and configured.
+Make sure you have the AWS CLI and AWS CDK installed and have aws configured with administrative access to a user
 
 **Step 2: Clone the Repository**  
 Clone the GitHub repository containing the project:
 
 ```
-git clone https://github.com/your_username/your_repository.git
-cd your_repository
+git clone https://github.com/akanksha7/AWSstack.git
+cd AWSstack
 ```
 
 **Step 3: Install Dependencies**  
@@ -28,7 +32,7 @@ Install dependencies using npm:
 ```
 npm install
 ```
-**Step 4: Run buildn**
+**Step 4: Run build**
 ```
 npm run build
 ```
@@ -67,15 +71,6 @@ Upon uploading, the file is immediately added to the S3 bucket (`files-bucket`),
             - Follow instructions to create administrative user in IAM Identity Center: https://docs.aws.amazon.com/singlesignon/latest/userguide/quick-start-default-idc.html
         - Add Administrative permissions
         - Sign in with new user
-3. Install aws-cdk - npm install -g aws-cdk
+3. Install aws-cdk - `npm install -g aws-cdk`
 4. Install aws-cli: https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
-    - configure aws-cli by running : aws configure (supply the same credentials)
-5. Create a dir - mkdir fovusDeployStack
-   - Go in - cd fovusDeployStack
-   - Initialize the app - cdk init app --language typescript
-   - cdk bootstrap
-   - Creates a CDKToolkit stack on CloudFormation (can see on UI as well)
-   - To restart the bootstrap delete the stack by going on the CloudFormation ui or running:
-   aws cloudformation delete-stack --stack-name CDKToolkit
-   - Then rerun: cdk bootstrap
-   - cdk deploy
+    - configure aws-cli by running : `aws configure`
