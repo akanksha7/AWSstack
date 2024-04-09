@@ -1,0 +1,119 @@
+{
+  "version": "36.0.0",
+  "artifacts": {
+    "DeployFovusStackStack.assets": {
+      "type": "cdk:asset-manifest",
+      "properties": {
+        "file": "DeployFovusStackStack.assets.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+      }
+    },
+    "DeployFovusStackStack": {
+      "type": "aws:cloudformation:stack",
+      "environment": "aws://unknown-account/unknown-region",
+      "properties": {
+        "templateFile": "DeployFovusStackStack.template.json",
+        "terminationProtection": false,
+        "validateOnSynth": false,
+        "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
+        "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/6ed83b3574f27ef210439fd2407e2c1f542eb8c68b70d4d2bc394a6b367c8915.json",
+        "requiresBootstrapStackVersion": 6,
+        "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
+        "additionalDependencies": [
+          "DeployFovusStackStack.assets"
+        ],
+        "lookupRole": {
+          "arn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-lookup-role-${AWS::AccountId}-${AWS::Region}",
+          "requiresBootstrapStackVersion": 8,
+          "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version"
+        }
+      },
+      "dependencies": [
+        "DeployFovusStackStack.assets"
+      ],
+      "metadata": {
+        "/DeployFovusStackStack/fovus-table-1/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "fovustable1EDCB4933"
+          }
+        ],
+        "/DeployFovusStackStack/S3Bucket-scripts/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3Bucketscripts9731ECAE"
+          }
+        ],
+        "/DeployFovusStackStack/S3Bucket-scripts/Policy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "S3BucketscriptsPolicy9680C180"
+          }
+        ],
+        "/DeployFovusStackStack/deployEC2Function/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deployEC2FunctionServiceRole18328629"
+          }
+        ],
+        "/DeployFovusStackStack/deployEC2Function/ServiceRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deployEC2FunctionServiceRoleDefaultPolicyB37614A8"
+          }
+        ],
+        "/DeployFovusStackStack/deployEC2Function/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "deployEC2Function20B061BE"
+          }
+        ],
+        "/DeployFovusStackStack/uploadFileDetailsFunction/ServiceRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "uploadFileDetailsFunctionServiceRole9B20FEA4"
+          }
+        ],
+        "/DeployFovusStackStack/uploadFileDetailsFunction/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "uploadFileDetailsFunction34C9A537"
+          }
+        ],
+        "/DeployFovusStackStack/CDKMetadata/Default": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadata"
+          }
+        ],
+        "/DeployFovusStackStack/CDKMetadata/Condition": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CDKMetadataAvailable"
+          }
+        ],
+        "/DeployFovusStackStack/BootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "BootstrapVersion"
+          }
+        ],
+        "/DeployFovusStackStack/CheckBootstrapVersion": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "CheckBootstrapVersion"
+          }
+        ]
+      },
+      "displayName": "DeployFovusStackStack"
+    },
+    "Tree": {
+      "type": "cdk:tree",
+      "properties": {
+        "file": "tree.json"
+      }
+    }
+  }
+}

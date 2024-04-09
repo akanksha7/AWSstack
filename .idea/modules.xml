@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FovusChallenge.iml" filepath="$PROJECT_DIR$/FovusChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/client.iml" filepath="$PROJECT_DIR$/client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/deploymentStack.iml" filepath="$PROJECT_DIR$/deploymentStack.iml" />
     </modules>
   </component>
 </project>
