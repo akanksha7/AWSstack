@@ -1,18 +1,34 @@
-# Fovus Coding Challenge
+# Automated VM Creation with Script Execution
+This project creates a system that allows you to automatically create a new virtual machine (VM) instance and execute a script on it. Here's an overview of the components involved:
 
-## Overview
+**Responsive web UI:** This uses ReactJS and provides text and file inputs for users to interact with.
+Text input: This allows users to enter text data.
+File input: This allows users to upload a file.
+Submit button: This triggers the upload process.
 
-The project consists of the following components:
+**S3 storage:** This is where the uploaded file is stored.
 
-**Amazon S3 Buckets:** Stores the uploaded files and the script to perform the steps in the ec2 instance.
+**DynamoDB FileTable:** This stores the text input data and the S3 path of the uploaded file.
 
-**Amazon DynamoDB Table:** Stores metadata about the uploaded files, including the S3 path.
+**API Gateway and Lambda Function:** This is used to save the user inputs and S3 path to DynamoDB.
 
-**Amazon API Gateway:** Provides an HTTP endpoint for uploading files and triggering the script run.
+**EC2 VM instance:** This is the virtual machine that is automatically created and where the script is uploaded and executed.
 
-**AWS Lambda Functions:** Handle file upload, store metadata in DynamoDB, and trigger the script run.
+## How it works
 
-**Amazon EC2 Instance:** Runs the script triggered by DynamoDB events.
+1) Users interact with the web UI and provide text input and upload a file.
+2) Clicking the submit button triggers the upload process. The file is uploaded directly to S3 from the browser, and not sent via Lambda.
+3) The text input data and S3 path are stored in DynamoDB.
+4) A DynamoDB event triggers a script to run in the VM instance.
+5) The script performs the following actions:
+6) Creates a new VM instance automatically.
+7) Downloads the script from S3 to the VM instance.
+8) Retrieves the text input data and the uploaded file from DynamoDB.
+9) Appends the retrieved text input data to the downloaded file and saves it as a new file.
+10) Uploads the new file to S3.
+11) Saves the outputs and S3 path of the new file in DynamoDB.
+12) The VM instance is terminated automatically.
+
 
 ## Implementation
 
