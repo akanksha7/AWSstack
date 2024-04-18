@@ -10,7 +10,7 @@ Submit button: This triggers the upload process.
 
 **DynamoDB FileTable:** This stores the text input data and the S3 path of the uploaded file.
 
-**API Gateway and Lambda Function:** This is used to save the user inputs and S3 path to DynamoDB.
+**API Gateway and Lambda Function:** This is used to save the user inputs and S3 path to DynamoDB. Lambda Function is also used to run a python script for EC2 instance creation.  
 
 **EC2 VM instance:** This is the virtual machine that is automatically created and where the script is uploaded and executed.
 
