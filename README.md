@@ -14,6 +14,8 @@ Submit button: This triggers the upload process.
 
 **EC2 VM instance:** This is the virtual machine that is automatically created and where the script is uploaded and executed.
 
+<img width="647" alt="Screenshot 2024-04-17 at 9 17 04 PM" src="https://github.com/akanksha7/AWSstack/assets/18654204/effa4194-6419-49d1-bb50-8f41ca889cca">
+
 ## How it works
 
 1) Users interact with the web UI and provide text input and upload a file.
