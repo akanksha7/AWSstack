@@ -1,10 +1,10 @@
 # Automated VM Creation with Script Execution
 This project creates a system that allows you to automatically create a new virtual machine (VM) instance and execute a script on it. Here's an overview of the components involved:
 
-**Responsive web UI:** This uses ReactJS and provides text and file inputs for users to interact with.
-Text input: This allows users to enter text data.
-File input: This allows users to upload a file.
-Submit button: This triggers the upload process.
+**Responsive web UI:** This uses ReactJS and provides text and file inputs for users to interact with.  
+Text input: This allows users to enter text data.  
+File input: This allows users to upload a file.  
+Submit button: This triggers the upload process.  
 
 **S3 storage:** This is where the uploaded file is stored.
 
